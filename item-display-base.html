@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Item Display</title>
+    <script src="item-list.js"></script>
+  </head>
+  <body>
+    <style>
+      .prop-row{
+        display: flex;
+        margin: 10px 0;
+      }
+
+      .prop-name{
+        width: 150px;
+        font-weight: bold;
+      }
+</style>
+    <div class="main-container">
+      <div>
+        <h2>Item Display</h2>
+      </div>
+
+      <div>
+        <select name="item-list" onchange="testchange(event)" id="item-list" class="select"></select>
+      </div>
+
+      <hr />
+      <div class="prop-row">
+        <div class="prop-name">ID</div>
+        <div id="item-id"></div>
+      </div>
+
+      <div class="prop-row">
+        <div class="prop-name">Name</div>
+        <div id="item-name"></div>
+      </div>
+
+      <div class="prop-row">
+        <div class="prop-name">Category</div>
+        <div id="item-category"></div>
+      </div>
+
+      <div class="prop-row">
+        <div class="prop-name">Inventory Amt.</div>
+        <div id="item-inventory"></div>
+      </div>
+
+      <div class="prop-row">
+        <div class="prop-name">List price</div>
+        <div id="item-price"></div>
+      </div>
+
+    </div>
+
+    <script>
+        function testchange(event){
+          // console.log("==> event value: ",event.target.value);
+          let index = event.target.value;
+          let item = items[index];
+          document.getElementById("item-id").innerHTML = item.id;
+          document.getElementById("item-name").innerHTML = item.name;
+          document.getElementById("item-category").innerHTML = item.category;
+          document.getElementById("item-inventory").innerHTML = item.inventory;
+          document.getElementById("item-price").innerHTML = item.price;
+
+        }
+        let optionHtml = "";
+        for(let i = 0; i < items.length; i++){
+          optionHtml += `<option value="${items[i].id}">${items[i].name}</option>`;
+        }
+        console.log(optionHtml);
+        document.getElementById("item-list").innerHTML = optionHtml;
+
+
+
+    </script>
+
+  </body>
+</html>
